@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-c305b$_tll^64&%*t5zr^nt-3+w)@$r$xv-2(+-$c#8-**3^#a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['doggystore.com', '127.0.0.1']
 
 
 # Application definition
@@ -52,7 +52,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'store.views.categories',
+                'store.context_processors.categories',
             ],
         },
     },
@@ -106,7 +106,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 # Setup the Media Folder for Saving Images
 MEDIA_URL = '/media/'
