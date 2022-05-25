@@ -7,8 +7,8 @@ class TestBasketView(TestCase):
     def setUp(self):
         Category.objects.create(name='toys', slug='toys')
         User.objects.create(username='admin')
-        Product.objects.create(category_id = 1, title='ball', created_by_id=1, slug='ball', price='9.99', image='ball')
-        Product.objects.create(category_id = 2, title='bone', created_by_id=1, slug='bone', price='10.01', image='bone')
+        Product.objects.create(category_id = 1, title='ball', created_by_id=1, slug='ball', price='9.99', image='ball_AWCNJFN')
+        Product.objects.create(category_id = 1, title='bone', created_by_id=1, slug='bone', price='10.01', image='bone')
         self.client.post(reverse('basket:basket_add'), {"productid": 1, "productqty": 1, "action": "post"}, xhr=True)
         self.client.post(reverse('basket:basket_add'), {"productid": 2, "productqty": 2, "action": "post"}, xhr=True)
 
@@ -23,7 +23,7 @@ class TestBasketView(TestCase):
         """
         Test adding items to the basket
         """
-        response = self.client.post(reverse('basket:basket_add'), {"productid": 1, "productqty": 1, "action": "post"}, xhr=True)
+        response = self.client.post(reverse('basket:basket_add'), {"productid": 1, "productqty": 2, "action": "post"}, xhr=True)
         self.assertEqual(response.json(), {'qty': 4})
         response = self.client.post(reverse('basket:basket_add'), {"productid": 2, "productqty": 1, "action": "post"}, xhr=True)
         self.assertEqual(response.json(), {'qty': 3})
@@ -33,11 +33,11 @@ class TestBasketView(TestCase):
         Test deleting items from the basket
         """
         response = self.client.post(reverse('basket:basket_delete'), {"productid": 2, "action": "post"}, xhr=True)
-        self.assertEqual(response.json(), {'qty': 1, 'subtotal': '20.00'})
+        self.assertEqual(response.json(), {'qty': 1, 'subtotal': '9.99'})
 
     def test_basket_update(self):
         """
         Test updating items from the basket
         """
         response = self.client.post(reverse('basket:basket_update'), {"productid": 2, "productqty": 1, "action": "post"}, xhr=True)
-        self.assertEqual(response.json(), {'qty': 2, 'subtotal': '40.00'})
+        self.assertEqual(response.json(), {'qty': 2, 'subtotal': '20.00'})

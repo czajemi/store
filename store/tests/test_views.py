@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.http import HttpRequest
+from importlib import import_module
 from django.contrib.auth.models import User
 from store.models import Category, Product
 from django.test import Client, TestCase
@@ -40,6 +42,8 @@ class TestViewResponses(TestCase):
     def test_homepage_html(self):
         """Code validation, search HTML for text"""
         request = HttpRequest()
+        engine = import_module(settings.SESSION_ENGINE)
+        request.session = engine.SessionStore()
         response = product_all(request)
         html = response.content.decode('utf8')
         self.assertIn('<title>DoggyStore</title>', html)
