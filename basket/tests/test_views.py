@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from account.models import UserBase
 from django.test import TestCase
 from django.urls import reverse
 from store.models import Category, Product
@@ -6,7 +6,7 @@ from store.models import Category, Product
 class TestBasketView(TestCase):
     def setUp(self):
         Category.objects.create(name='toys', slug='toys')
-        User.objects.create(username='admin')
+        UserBase.objects.create(email='admin@emilka.com')
         Product.objects.create(category_id = 1, title='ball', created_by_id=1, slug='ball', price='9.99', image='ball_AWCNJFN')
         Product.objects.create(category_id = 1, title='bone', created_by_id=1, slug='bone', price='10.01', image='bone')
         self.client.post(reverse('basket:basket_add'), {"productid": 1, "productqty": 1, "action": "post"}, xhr=True)

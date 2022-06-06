@@ -1,12 +1,11 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
-from .basket import Basket
 from store.models import Product
+from .basket import Basket
 
 def basket_summary(request):
     basket = Basket(request)
-    return render(request, 'store/basket/summary.html', {'basket': basket})
-
+    return render(request, 'basket/summary.html', {'basket': basket})
 
 def basket_add(request):
     basket = Basket(request)
@@ -20,7 +19,6 @@ def basket_add(request):
         response = JsonResponse({'qty': basketqty})
         return response
 
-
 def basket_delete(request):
     basket = Basket(request)
     if request.POST.get('action') == 'post':
@@ -32,7 +30,6 @@ def basket_delete(request):
         response = JsonResponse({'qty': basketqty, 'subtotal': baskettotal})
         return response
 
-
 def basket_update(request):
     basket = Basket(request)
     if request.POST.get('action') == 'post':
@@ -41,6 +38,6 @@ def basket_update(request):
         basket.update(product=product_id, qty=product_qty)
 
         basketqty = basket.__len__()
-        baskettotal = basket.get_total_price()
-        response = JsonResponse({'qty': basketqty, 'subtotal': baskettotal})
+        basketsubtotal = basket.get_subtotal_price()
+        response = JsonResponse({'qty': basketqty, 'subtotal': basketsubtotal})
         return response

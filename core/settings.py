@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-c305b$_tll^64&%*t5zr^nt-3+w)@$r$xv-2(+-$c#8-**3^#a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['doggystore.com', '127.0.0.1']
+ALLOWED_HOSTS = ['doggystore.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'store',
     'basket',
     'account',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -128,9 +129,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BASKET_SESSION_ID = 'basket'
 
 # Stripe Payment
-# PUBLISHABLE_KEY = ''
-# SECRET_KEY = ''
-# STRIPE_ENDPOINT_SECRET = ''
+PUBLISHABLE_KEY = 'pk_test_51L6HlhJlpkJSPn4NglIQJ5fjlIcJreYVzXvfvuz0wgS8EID8dq34QvbeqLIrnijyavGsgmtAXytkeP0UryXwT2Io00K0ekSaM4'
+SECRET_KEY = 'sk_test_51L6HlhJlpkJSPn4N0ofjmMs1D4OH5LCaM58prXEkoViO057k3klT1pBuCoetxUOUty3HJWW2TSjV5TSjz2wP2B8T00ZPXtrrTx'
+STRIPE_ENDPOINT_SECRET = 'whsec_c7ffb7ed42dbf93f59f1dbb44f2ac0820bfb4511fc78563fbedbff4e296dd'
 # stripe listen --forward-to localhost:8000/payment/webhook/
 
 # Custom user model
