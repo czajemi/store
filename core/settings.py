@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-c305b$_tll^64&%*t5zr^nt-3+w)@$r$xv-2(+-$c#8-**3^#a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['doggystore.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['ecommercedjango-emilia.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
