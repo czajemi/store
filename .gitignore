@@ -11,8 +11,8 @@ store/__pycache__
 ####
 # Environments
 ####
-.venv/
-venv
+.env/
+env
 
 ####
 # Unit Test & 
