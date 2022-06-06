@@ -4,13 +4,15 @@
 *.log
 *.pot
 *.pyc
-__pycache__/
+
+core/__pycache__
+store/__pycache__
 
 ####
 # Environments
 ####
 .venv/
-venv/
+venv
 
 ####
 # Unit Test & 
